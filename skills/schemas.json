@@ -1,0 +1,84 @@
+[
+  {
+    "name": "get_voicemails",
+    "title": "Get Voicemails",
+    "description": "List voicemails synced from iPhone to this Mac, newest first, with sender, date, duration, read state, transcript availability and audio file path.",
+    "routePath": "apple_voicemail/get_voicemails",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "sender": {
+          "type": "string",
+          "description": "Filter by sender phone number; partial match, formatting ignored for numbers"
+        },
+        "start": {
+          "type": "string",
+          "description": "Only voicemails received at or after this ISO 8601 date/time"
+        },
+        "end": {
+          "type": "string",
+          "description": "Only voicemails received before this ISO 8601 date/time"
+        },
+        "mailbox": {
+          "type": "string",
+          "enum": [
+            "inbox",
+            "blocked",
+            "deleted",
+            "all"
+          ],
+          "description": "Mailbox to read (default inbox)"
+        },
+        "unread_only": {
+          "type": "boolean",
+          "description": "Only unread voicemails (default false)"
+        },
+        "limit": {
+          "type": "number",
+          "description": "Maximum voicemails to return (default 30)"
+        }
+      },
+      "required": []
+    }
+  },
+  {
+    "name": "get_transcript",
+    "title": "Get Voicemail Transcript",
+    "description": "Get the transcribed text of one voicemail by its id, as returned by get_voicemails.",
+    "routePath": "apple_voicemail/get_transcript",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "number",
+          "description": "Voicemail id from get_voicemails"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    }
+  },
+  {
+    "name": "get_audio",
+    "title": "Get Voicemail Audio",
+    "description": "Get the audio recording of one voicemail by its id. Returns the file path, copying the file somewhere easy to use when the original is not directly readable.",
+    "routePath": "apple_voicemail/get_audio",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "number",
+          "description": "Voicemail id from get_voicemails"
+        },
+        "destination": {
+          "type": "string",
+          "description": "Optional absolute path to copy the audio file to"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    }
+  }
+]
