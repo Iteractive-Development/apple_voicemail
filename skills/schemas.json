@@ -35,7 +35,8 @@
         },
         "limit": {
           "type": "number",
-          "description": "Maximum voicemails to return (default 30)"
+          "description": "Maximum voicemails to return (default 30, capped at 200)",
+          "maximum": 200
         }
       },
       "required": []

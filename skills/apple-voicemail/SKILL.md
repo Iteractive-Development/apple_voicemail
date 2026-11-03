@@ -3,6 +3,7 @@ name: apple-voicemail
 description: Read iPhone voicemails synced to this Mac through apple_voicemail APIs — list with filters, get transcripts, and get audio files.
 metadata:
   platforms: darwin
+  short-description: List and read iPhone voicemails on this Mac
 ---
 
 # Apple Voicemail
