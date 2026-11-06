@@ -140,7 +140,7 @@ export async function listVoicemails(filters: ListFilters): Promise<Voicemail[]>
 
 /** List voicemails synced from iPhone to this Mac, newest first, with sender, date, duration, read state, transcript availability and audio file path. */
 export default async function main(request: Request) {
-    const options = (await request.json()) as GetVoicemailsOptions;
+    const options = (await request.json().catch(() => ({}))) as GetVoicemailsOptions;
     try {
         const mailbox = options.mailbox ?? "inbox";
         if (typeof mailbox !== "string" || !VALID_MAILBOXES.has(mailbox)) {

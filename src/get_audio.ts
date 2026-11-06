@@ -58,7 +58,7 @@ export async function getAudio(id: unknown, destination?: unknown) {
 
 /** Get the audio recording of one voicemail by its id. Returns the file path, copying the file somewhere easy to use when the original is not directly readable. */
 export default async function main(request: Request) {
-    const options = (await request.json()) as { id?: unknown; destination?: unknown };
+    const options = (await request.json().catch(() => ({}))) as { id?: unknown; destination?: unknown };
     try {
         const audio = await getAudio(options.id, options.destination);
         return EnconvoResponse.json(audio);

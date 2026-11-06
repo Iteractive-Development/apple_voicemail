@@ -33,7 +33,7 @@ export async function readTranscript(rawId: unknown) {
 
 /** Get the transcribed text of one voicemail by its id, as returned by get_voicemails. */
 export default async function main(request: Request) {
-    const options = (await request.json()) as { id?: unknown };
+    const options = (await request.json().catch(() => ({}))) as { id?: unknown };
     try {
         const transcript = await readTranscript(options.id);
         return EnconvoResponse.json(transcript);
